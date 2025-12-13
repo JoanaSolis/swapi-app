@@ -1,0 +1,166 @@
+ion-content {
+  --background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  
+  &::before {
+    content: '❄';
+    position: absolute;
+    top: 15%;
+    left: 8%;
+    font-size: 2rem;
+    opacity: 0.2;
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  &::after {
+    content: '❄';
+    position: absolute;
+    top: 55%;
+    right: 12%;
+    font-size: 1.5rem;
+    opacity: 0.2;
+    animation: float 8s ease-in-out infinite;
+  }
+}
+
+.register-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+}
+
+.logo-section {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  
+  .logo-circle {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 0.75rem;
+    background: linear-gradient(135deg, #2196F3, #1976D2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(33, 150, 243, 0.3);
+    
+    .snow-icon {
+      font-size: 3rem;
+      color: white;
+    }
+  }
+  
+  .app-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1976D2;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  }
+}
+
+.form-section {
+  margin-top: 1rem;
+  
+  .input-item {
+    --background: white;
+    --border-radius: 12px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    
+    ion-label {
+      color: #424242;
+    }
+  }
+  
+  .register-button {
+    --background: #2196F3;
+    --background-hover: #1976D2;
+    --border-radius: 12px;
+    height: 48px;
+    margin-top: 1.5rem;
+    font-weight: 600;
+    text-transform: none;
+    font-size: 1rem;
+  }
+  
+  .login-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    
+    p {
+      color: #424242;
+      font-size: 0.9rem;
+      
+      a {
+        color: #2196F3;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+.bottom-decoration {
+  text-align: center;
+  margin-top: 2rem;
+  opacity: 0.3;
+  
+  ion-icon {
+    font-size: 3rem;
+    color: #2196F3;
+    animation: float 10s ease-in-out infinite;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+  }
+}
+
+.register-container::before,
+.register-container::after {
+  content: '❄';
+  position: absolute;
+  font-size: 1.5rem;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.register-container::before {
+  top: 25%;
+  right: 8%;
+  animation: float 7s ease-in-out infinite;
+}
+
+.register-container::after {
+  bottom: 25%;
+  left: 10%;
+  animation: float 9s ease-in-out infinite;
+}
+
+ion-toolbar {
+  --background: transparent;
+  --border-width: 0;
+  
+  ion-title {
+    color: #1976D2;
+    font-weight: 600;
+  }
+  
+  ion-back-button {
+    --color: #1976D2;
+  }
+}

@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="register-container">
+    
+    <!-- Logo pequeño -->
+    <div class="logo-section">
+      <div class="logo-circle">
+        <ion-icon name="snow-outline" class="snow-icon"></ion-icon>
+      </div>
+      <h1 class="app-title">SWAPI</h1>
+    </div>
+
+    <!-- Formulario de Registro -->
+    <div class="form-section">
+      <ion-item lines="none" class="input-item">
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input 
+          type="text" 
+          [(ngModel)]="nombre"
+          placeholder="Tu nombre completo"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item lines="none" class="input-item">
+        <ion-label position="floating">Correo</ion-label>
+        <ion-input 
+          type="email" 
+          [(ngModel)]="email"
+          placeholder="tucorreo@ejemplo.com"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item lines="none" class="input-item">
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input 
+          type="password" 
+          [(ngModel)]="password"
+          placeholder="Mínimo 6 caracteres"
+        ></ion-input>
+      </ion-item>
+
+      <!-- Botón Ingresar -->
+      <ion-button 
+        expand="block" 
+        class="register-button"
+        (click)="onRegister()"
+        [disabled]="loading"
+      >
+        <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
+        <span *ngIf="!loading">Ingresar</span>
+      </ion-button>
+
+      <!-- Link a Login -->
+      <div class="login-link">
+        <p>¿Ya tienes una cuenta? 
+          <a (click)="goToLogin()">Inicia sesión aquí</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Logo decorativo inferior -->
+    <div class="bottom-decoration">
+      <ion-icon name="snow-outline"></ion-icon>
+    </div>
+
+  </div>
+</ion-content>

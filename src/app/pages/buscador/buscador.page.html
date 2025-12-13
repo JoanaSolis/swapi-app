@@ -1,0 +1,127 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goToTabs()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Buscador</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <div class="buscador-container">
+    
+    <!-- Header -->
+    <div class="header-section">
+      <h2>Busca productos o servicios</h2>
+    </div>
+
+    <!-- Selector de tipo -->
+    <div class="type-selector" *ngIf="!showResults">
+      <ion-button 
+        expand="block"
+        [fill]="selectedType === 'producto' ? 'solid' : 'outline'"
+        class="type-button producto"
+        (click)="selectType('producto')"
+      >
+        <ion-icon name="cube-outline" slot="start"></ion-icon>
+        Producto
+      </ion-button>
+
+      <ion-button 
+        expand="block"
+        [fill]="selectedType === 'servicio' ? 'solid' : 'outline'"
+        class="type-button servicio"
+        (click)="selectType('servicio')"
+      >
+        <ion-icon name="construct-outline" slot="start"></ion-icon>
+        Servicio
+      </ion-button>
+    </div>
+
+    <!-- Categorías de Productos -->
+    <div class="categories-section" *ngIf="selectedType === 'producto' && !showResults">
+      <h3>Categoría</h3>
+      <div class="categories-list">
+        <ion-button 
+          *ngFor="let cat of productCategories"
+          expand="block"
+          class="category-item"
+          (click)="searchByCategory(cat.id)"
+        >
+          {{ cat.nombre }}
+        </ion-button>
+      </div>
+    </div>
+
+    <!-- Categorías de Servicios -->
+    <div class="categories-section" *ngIf="selectedType === 'servicio' && !showResults">
+      <h3>Categoría</h3>
+      <div class="categories-list">
+        <ion-button 
+          *ngFor="let cat of serviceCategories"
+          expand="block"
+          class="category-item"
+          (click)="searchByCategory(cat.id)"
+        >
+          {{ cat.nombre }}
+        </ion-button>
+      </div>
+    </div>
+
+    <!-- Resultados de búsqueda -->
+    <div class="results-section" *ngIf="showResults">
+      
+      <!-- Botón volver -->
+      <ion-button 
+        fill="clear" 
+        class="back-button"
+        (click)="showResults = false"
+      >
+        <ion-icon name="arrow-back" slot="start"></ion-icon>
+        Volver a categorías
+      </ion-button>
+
+      <!-- Loading -->
+      <div *ngIf="loading" class="loading-container">
+        <ion-spinner name="crescent"></ion-spinner>
+        <p>Buscando...</p>
+      </div>
+
+      <!-- Sin resultados -->
+      <div *ngIf="!loading && searchResults.length === 0" class="empty-state">
+        <ion-icon name="search-outline"></ion-icon>
+        <h3>No se encontraron resultados</h3>
+        <p>Intenta con otra categoría</p>
+      </div>
+
+      <!-- Lista de resultados -->
+      <div *ngIf="!loading && searchResults.length > 0" class="results-list">
+        <h3>{{ searchResults.length }} resultado(s) encontrado(s)</h3>
+        
+        <ion-card *ngFor="let pub of searchResults" class="result-card">
+          <div class="card-image" *ngIf="pub.foto">
+            <img [src]="pub.foto" [alt]="pub.titulo">
+          </div>
+          <ion-card-content>
+            <h4>{{ pub.titulo }}</h4>
+            <p class="description">{{ pub.descripcion }}</p>
+            <p class="author">Por: {{ pub.userName }}</p>
+            <ion-button 
+              expand="block" 
+              size="small"
+              (click)="goToPublication(pub.id)"
+            >
+              Ver detalles
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </div>
+
+    </div>
+
+  </div>
+
+</ion-content>

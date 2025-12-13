@@ -1,0 +1,62 @@
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="tabs-container">
+    
+    <!-- Header con logo -->
+    <div class="header-section">
+      <div class="logo-header">
+        <ion-icon name="snow-outline" class="logo-icon"></ion-icon>
+        <h1>SWAPI</h1>
+      </div>
+      <p class="welcome-text">Bienvenido a tu comunidad de trueque</p>
+    </div>
+
+    <!-- Menú de navegación principal -->
+    <div class="navigation-menu">
+      
+      <ion-button 
+        expand="block" 
+        class="nav-button publicaciones"
+        (click)="navigateTo('publicaciones')"
+      >
+        <ion-icon name="home" slot="start"></ion-icon>
+        Publicaciones
+      </ion-button>
+
+      <ion-button 
+        expand="block" 
+        class="nav-button buscador"
+        (click)="navigateTo('buscador')"
+      >
+        <ion-icon name="search" slot="start"></ion-icon>
+        Buscador
+      </ion-button>
+
+      <ion-button 
+        expand="block" 
+        class="nav-button publicar"
+        (click)="navigateTo('publicar')"
+      >
+        <ion-icon name="add-circle" slot="start"></ion-icon>
+        Publicar
+      </ion-button>
+
+      <ion-button 
+        expand="block" 
+        class="nav-button chat"
+        (click)="navigateTo('chat')"
+      >
+        <ion-icon name="chatbubbles" slot="start"></ion-icon>
+        Mi chat
+      </ion-button>
+
+    </div>
+
+    <!-- Decoración -->
+    <div class="bottom-decoration">
+      <ion-icon name="snow-outline"></ion-icon>
+      <ion-icon name="snow-outline"></ion-icon>
+      <ion-icon name="snow-outline"></ion-icon>
+    </div>
+
+  </div>
+</ion-content>

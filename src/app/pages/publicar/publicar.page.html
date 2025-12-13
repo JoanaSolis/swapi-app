@@ -1,0 +1,103 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goToTabs()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Publicar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <div class="publicar-container">
+    
+    <!-- Header -->
+    <div class="header-section">
+      <ion-icon name="add-circle-outline" class="header-icon"></ion-icon>
+      <h2>Nueva Publicación</h2>
+      <p>Comparte un producto o servicio con tu comunidad</p>
+    </div>
+
+    <!-- Formulario -->
+    <div class="form-section">
+      
+      <!-- Título -->
+      <div class="form-group">
+        <label>Título</label>
+        <ion-input 
+          [(ngModel)]="titulo"
+          placeholder="¿Qué ofreces?"
+          class="custom-input"
+        ></ion-input>
+      </div>
+
+      <!-- Tipo (Producto/Servicio) -->
+      <div class="form-group">
+        <label>Tipo</label>
+        <ion-segment [(ngModel)]="tipo" (ionChange)="onTipoChange()" class="type-segment">
+          <ion-segment-button value="producto">
+            <ion-icon name="cube-outline"></ion-icon>
+            <ion-label>Producto</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="servicio">
+            <ion-icon name="construct-outline"></ion-icon>
+            <ion-label>Servicio</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+
+      <!-- Categoría -->
+      <div class="form-group">
+        <label>Categoría</label>
+        <ion-select 
+          [(ngModel)]="categoria"
+          placeholder="Selecciona una categoría"
+          interface="action-sheet"
+          class="custom-select"
+        >
+          <ion-select-option 
+            *ngFor="let cat of availableCategories" 
+            [value]="cat.id"
+          >
+            {{ cat.nombre }}
+          </ion-select-option>
+        </ion-select>
+      </div>
+
+      <!-- Descripción -->
+      <div class="form-group">
+        <label>Descripción</label>
+        <ion-textarea 
+          [(ngModel)]="descripcion"
+          placeholder="Describe tu producto o servicio..."
+          rows="5"
+          class="custom-textarea"
+        ></ion-textarea>
+      </div>
+
+      <!-- Botón publicar -->
+      <ion-button 
+        expand="block" 
+        class="publish-button"
+        (click)="onPublicar()"
+        [disabled]="loading"
+      >
+        <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
+        <span *ngIf="!loading">
+          <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+          Publicar
+        </span>
+      </ion-button>
+
+    </div>
+
+    <!-- Decoración -->
+    <div class="bottom-decoration">
+      <ion-icon name="snow-outline"></ion-icon>
+    </div>
+
+  </div>
+
+</ion-content>

@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goToTabs()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Mi Chat</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <!-- Pull to refresh -->
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="chat-container">
+    
+    <!-- Header con icono -->
+    <div class="header-section">
+      <ion-icon name="chatbubbles" class="header-icon"></ion-icon>
+      <h2>Tus conversaciones</h2>
+    </div>
+
+    <!-- Loading -->
+    <div *ngIf="loading" class="loading-container">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Cargando conversaciones...</p>
+    </div>
+
+    <!-- Sin conversaciones -->
+    <div *ngIf="!loading && conversations.length === 0" class="empty-state">
+      <ion-icon name="chatbubble-outline"></ion-icon>
+      <h3>No tienes conversaciones</h3>
+      <p>Inicia una conversación desde las publicaciones</p>
+    </div>
+
+    <!-- Lista de conversaciones -->
+    <ion-list *ngIf="!loading && conversations.length > 0" class="conversations-list">
+      <ion-item 
+        *ngFor="let conv of conversations"
+        button
+        (click)="openConversation(conv)"
+        class="conversation-item"
+        lines="none"
+      >
+        
+        <!-- Avatar -->
+        <ion-avatar slot="start">
+          <img 
+            [src]="getOtherUser(conv)?.userPhoto || 'https://i.pravatar.cc/150?img=1'" 
+            [alt]="getOtherUser(conv)?.userName"
+          >
+        </ion-avatar>
+
+        <!-- Contenido -->
+        <ion-label>
+          <h3>{{ getOtherUser(conv)?.userName }}</h3>
+          <p class="last-message">{{ conv.ultimoMensaje || 'Sin mensajes' }}</p>
+        </ion-label>
+
+        <!-- Badge de mensajes no leídos -->
+        <ion-badge 
+          *ngIf="conv.mensajesNoLeidos && conv.mensajesNoLeidos > 0"
+          slot="end"
+          color="primary"
+        >
+          {{ conv.mensajesNoLeidos }}
+        </ion-badge>
+
+        <!-- Flecha -->
+        <ion-icon 
+          name="chevron-forward-outline" 
+          slot="end"
+          class="arrow-icon"
+        ></ion-icon>
+
+      </ion-item>
+    </ion-list>
+
+    <!-- Botón para ver todas -->
+    <div *ngIf="!loading && conversations.length > 0" class="footer-section">
+      <p class="footer-text">
+        <ion-icon name="information-circle-outline"></ion-icon>
+        Desliza para actualizar
+      </p>
+    </div>
+
+  </div>
+
+</ion-content>

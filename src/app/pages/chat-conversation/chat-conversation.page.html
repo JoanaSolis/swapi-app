@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    
+    <!-- Info del usuario -->
+    <div class="header-user-info" *ngIf="otherUser">
+      <ion-avatar class="header-avatar">
+        <img [src]="otherUser.userPhoto || 'https://i.pravatar.cc/150?img=1'" [alt]="otherUser.userName">
+      </ion-avatar>
+      <ion-title>{{ otherUser.userName }}</ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="chat-content">
+  
+  <div class="messages-container">
+    
+    <!-- Loading -->
+    <div *ngIf="loading" class="loading-container">
+      <ion-spinner name="crescent"></ion-spinner>
+    </div>
+
+    <!-- Sin mensajes -->
+    <div *ngIf="!loading && messages.length === 0" class="empty-chat">
+      <ion-icon name="chatbubble-outline"></ion-icon>
+      <p>No hay mensajes aún<br>¡Envía el primero!</p>
+    </div>
+
+    <!-- Mensajes -->
+    <div *ngIf="!loading && messages.length > 0" class="messages-list">
+      <div 
+        *ngFor="let msg of messages"
+        [class]="isMyMessage(msg) ? 'message-wrapper my-message' : 'message-wrapper other-message'"
+      >
+        <div class="message-bubble">
+          <p class="message-text">{{ msg.mensaje }}</p>
+          <span class="message-time">{{ formatTime(msg.timestamp) }}</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</ion-content>
+
+<!-- Footer con input de mensaje -->
+<ion-footer>
+  <ion-toolbar class="message-toolbar">
+    <div class="message-input-container">
+      <ion-input
+        [(ngModel)]="newMessage"
+        placeholder="Escribe un mensaje..."
+        class="message-input"
+        (keyup.enter)="sendMessage()"
+      ></ion-input>
+      <ion-button 
+        fill="clear" 
+        class="send-button"
+        (click)="sendMessage()"
+        [disabled]="!newMessage.trim()"
+      >
+        <ion-icon name="send" slot="icon-only"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-footer>

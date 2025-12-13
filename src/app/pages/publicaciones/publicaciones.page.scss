@@ -1,0 +1,171 @@
+ion-toolbar {
+  --background: #2196F3;
+  --color: white;
+  
+  ion-button {
+    --color: white;
+  }
+}
+
+ion-content {
+  --background: #f5f5f5;
+}
+
+.map-header {
+  background: linear-gradient(135deg, #2196F3, #1976D2);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: white;
+  
+  .map-icon {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  p {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+}
+
+.publications-list {
+  padding: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.loading-container {
+  text-align: center;
+  padding: 3rem 1rem;
+  
+  ion-spinner {
+    --color: #2196F3;
+    transform: scale(1.5);
+  }
+  
+  p {
+    margin-top: 1rem;
+    color: #757575;
+  }
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #757575;
+  
+  ion-icon {
+    font-size: 4rem;
+    color: #BDBDBD;
+    margin-bottom: 1rem;
+  }
+  
+  h3 {
+    font-size: 1.3rem;
+    color: #424242;
+    margin-bottom: 0.5rem;
+  }
+  
+  p {
+    margin: 0;
+  }
+}
+
+.publication-card {
+  margin-bottom: 1rem;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  
+  .card-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .category-badge {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      
+      ion-badge {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 12px;
+        font-weight: 600;
+      }
+    }
+  }
+  
+  ion-card-content {
+    padding: 1.25rem;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    
+    .user-details {
+      flex: 1;
+      
+      h4 {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #424242;
+      }
+      
+      .category-text {
+        margin: 0.25rem 0 0 0;
+        font-size: 0.8rem;
+        color: #757575;
+      }
+    }
+  }
+  
+  .publication-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #1976D2;
+    margin: 0 0 0.75rem 0;
+  }
+  
+  .publication-description {
+    color: #424242;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0 0 1rem 0;
+  }
+  
+  .chat-button {
+    --background: #2196F3;
+    --border-radius: 12px;
+    height: 44px;
+    font-weight: 600;
+    text-transform: none;
+    margin-top: 0.5rem;
+    
+    ion-icon {
+      font-size: 1.3rem;
+    }
+  }
+}

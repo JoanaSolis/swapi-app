@@ -1,0 +1,81 @@
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="login-container">
+    
+    <!-- Logo y título -->
+    <div class="logo-section">
+      <div class="logo-circle">
+        <ion-icon name="snow-outline" class="snow-icon"></ion-icon>
+      </div>
+      <h1 class="app-title">SWAPI</h1>
+      <p class="app-subtitle">Trueque Vecinal</p>
+    </div>
+
+    <!-- Formulario de Login -->
+    <div class="form-section">
+      <ion-item lines="none" class="input-item">
+        <ion-label position="floating">Nombre / Email</ion-label>
+        <ion-input 
+          type="email" 
+          [(ngModel)]="email"
+          placeholder="tucorreo@ejemplo.com"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item lines="none" class="input-item">
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input 
+          type="password" 
+          [(ngModel)]="password"
+          placeholder="••••••••"
+        ></ion-input>
+      </ion-item>
+
+      <!-- Botón Iniciar Sesión -->
+      <ion-button 
+        expand="block" 
+        class="login-button"
+        (click)="onLogin()"
+        [disabled]="loading"
+      >
+        <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
+        <span *ngIf="!loading">Iniciar Sesión</span>
+      </ion-button>
+
+      <!-- Botón Registrarse -->
+      <ion-button 
+        expand="block" 
+        fill="outline"
+        class="register-button"
+        (click)="goToRegister()"
+      >
+        Registrarse
+      </ion-button>
+
+      <!-- Divisor -->
+      <div class="divider">
+        <span>O continuar con</span>
+      </div>
+
+      <!-- Botón Google -->
+      <ion-button 
+        expand="block" 
+        fill="outline"
+        class="google-button"
+        (click)="loginWithGoogle()"
+      >
+        <ion-icon name="logo-google" slot="start"></ion-icon>
+        Google
+      </ion-button>
+    </div>
+
+    <!-- Nota informativa -->
+    <div class="info-section">
+      <p class="info-text">
+        <ion-icon name="information-circle-outline"></ion-icon>
+        Usuario de prueba: <strong>joana@swapi.com</strong><br>
+        Contraseña: <strong>123456</strong>
+      </p>
+    </div>
+
+  </div>
+</ion-content>
